@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-		var socket = io.connect('http://45.55.43.235:8081/');
+		var socket = io.connect('http://localhost:8081');
 
 		socket.on('connect', function(){
 			console.log("Connected on port 8081.")
@@ -24,6 +24,21 @@
 
 		var canvas;
 		var context;
+		var imageObj = new Image();
+
+		var imgArray = [
+			"images/duck.png",
+			"images/duck1.png",
+			"images/duck2.png",
+			"images/duck3.png",
+			"images/duck4.png"
+		];
+		var randIndex = imgArray.length * Math.random();
+		console.log(randIndex);
+		var randURL = imgArray[(Math.floor(randIndex))];
+		console.log(randURL);
+		imageObj.src = randURL;
+		
 
 		function initcanvas() {
 			canvas = document.getElementById('mycanvas');
@@ -50,14 +65,13 @@
 		function draw(xval, yval) {
 			console.log("draw " + xval + " " + yval);
 
+        	context.drawImage(imageObj, xval, yval);
+
 			// Draw a rectangle at clientX and clientY
-			context.fillRect(xval, yval, 10,10);
-			context.fillStyle='#000000';
+			//context.fillRect(xval, yval, 10,10);
+			//context.fillStyle='#000000';
 
 		};
-
-		// var opx = 0;
-		// var opy = 0;
 
 		function odraw(xval, yval){
 			console.log("draw " + xval + " " + yval);
@@ -66,17 +80,7 @@
 			context.fillRect(xval, yval, 10,10);
 			context.fillStyle='#000000';
 
-			// ontext.beginPath();
-
-			// context.strokeStyle='#000000';
-
-			// context.moveTo(opx, opy);
-			// context.lineTo(xval, yval);
-
-			// context.stroke();
-
-			// opx = xval;
-			// opy = yval;
+		
 		};
 
 	</script>

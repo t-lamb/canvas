@@ -29,6 +29,7 @@ function requestHandler(req, res) {
 			res.end(fileContents);	
 		}
 	);
+	// console.log(req);
 	console.log("Got a request " + req.url);
 }
 
