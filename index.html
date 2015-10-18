@@ -1,6 +1,8 @@
 
 <html>
 <head>
+	<title>Cursor Party</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 		var socket = io.connect('http://45.55.43.235:8081/');
@@ -27,19 +29,16 @@
 			canvas = document.getElementById('mycanvas');
 			context = canvas.getContext('2d');
 			
-			context.fillStyle="#FF0000";
+			context.canvas.width = window.innerWidth;
+			context.canvas.height = window.innerHeight;
+			context.fillStyle = "#FFFFFF";
 			context.fillRect(0,0,canvas.width,canvas.height);
 
-			canvas.addEventListener('mousemove', function (evt){
-				console.log("mousemove " + evt.clientX + evt.clientY);
-				//evt.clientX and evt.clientY are for entire window, not just canvas
+			canvas.addEventListener('mousemove', function (e){
+				console.log("mousemove " + e.clientX + ", " + e.clientY);
 
-				//get size of canvas
-				var canvasRect = canvas.getBoundingClientRect();
-
-				//calculate x and y within canvas, not entire window
-				y = evt.clientY - canvasRect.top; //subtract the starting point of the canvas top
-				x = evt.clientX - canvasRect.left; //subtract the starting point of the canvas left
+				x = e.clientX;
+				y = e.clientY;
 
 				console.log("mousemove x:" + x + " y:" + y);
 
@@ -48,46 +47,44 @@
 			}, false);
 		};
 
-		var px = 0;
-		var py = 0;
-
 		function draw(xval, yval) {
 			console.log("draw " + xval + " " + yval);
 
-			context.beginPath();
+			// Draw a rectangle at clientX and clientY
+			context.fillRect(xval, yval, 10,10);
+			context.fillStyle='#000000';
 
-			context.strokeStyle='#000000';
-			context.moveTo(px,py);
-			context.lineTo(xval,yval);
-
-			context.stroke();
-
-			px = xval;
-			py = yval;
 		};
 
-		var opx = 0;
-		var opy = 0;
+		// var opx = 0;
+		// var opy = 0;
 
 		function odraw(xval, yval){
 			console.log("draw " + xval + " " + yval);
 
-			ontext.beginPath();
+			// Draw a rectangle at other's X and other's Y
+			context.fillRect(xval, yval, 10,10);
+			context.fillStyle='#000000';
 
-			context.strokeStyle='#000000';
+			// ontext.beginPath();
 
-			context.moveTo(opx, opy);
-			context.lineTo(xval, yval);
+			// context.strokeStyle='#000000';
 
-			context.stroke();
+			// context.moveTo(opx, opy);
+			// context.lineTo(xval, yval);
 
-			opx = xval;
-			opy = yval;
+			// context.stroke();
+
+			// opx = xval;
+			// opy = yval;
 		};
 
 	</script>
 </head>
 <body onload="initcanvas();">
-	<canvas width="600" height="600" id="mycanvas" />
+	<header>
+		cursor party!
+	</header>
+	<canvas id="mycanvas" />
 </body>
 </html>
