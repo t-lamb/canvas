@@ -49,11 +49,11 @@ io.sockets.on('connection',
 		console.log("We have a new client: " + socket.id);
 
 		// when this user emits, client side: socket.emit('otherevent', some data);
-		socket.on('othermessage', function(data){
+		socket.on('clientMouseMove', function(data){
 			// data comes in when it is sent, including objects
-			console.log("Received: 'othermouse' " + data.x + " " + data.y);
+			console.log("Received: 'otherMouseMoved' " + data.x + " " + data.y);
 			// send it to all the clients including self
-			socket.emit('othermouse', data);
+			io.emit('otherMouseMoved', data);
 		});
 
 		socket.on('disconnect', function(){

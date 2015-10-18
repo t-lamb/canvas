@@ -13,7 +13,7 @@
 		});
 
 		//receive from any event
-		socket.on('othermouse', function(data){
+		socket.on('otherMouseMoved', function(data){
 			console.log(data.x + ", " + data.y + ", " + data.i);
 			odraw(data.x, data.y, data.i);
 		});
@@ -21,7 +21,7 @@
 		//
 		function sendmouse(xval, yval) {
 			//console.log("sendmouse: " + xval + ", " + yval + ", " + randIndex);
-			socket.emit('othermouse', { x: xval, y: yval, i: randIndex});
+			socket.emit('clientMouseMove', { x: xval, y: yval, i: randIndex });
 		};
 
 		var canvas;
