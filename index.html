@@ -1,7 +1,7 @@
 
 <html>
 <head>
-	<title>CUR50R P4R7Y</title>
+	<title>CUR$0R P4R7Y</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
@@ -18,10 +18,10 @@
 			odraw(data.x, data.y, data.i);
 		});
 
-		//
+		//send my mouse info
 		function sendmouse(xval, yval) {
-			//console.log("sendmouse: " + xval + ", " + yval + ", " + randIndex);
-			socket.emit('clientMouseMove', { x: xval, y: yval, i: randIndex });
+			//console.log("sendmouse: " + xval + ", " + yval + ", " + myIndex);
+			socket.emit('clientMouseMove', { x: xval, y: yval, i: myIndex });
 		};
 
 		var canvas;
@@ -29,29 +29,65 @@
 
 		var imgArray = new Array;
 		imgArray[0] = new Image();
-		imgArray[0].src = "images/girl.png";
+		imgArray[0].src = "images/cactus.png";
 
 		imgArray[1] = new Image();
-		imgArray[1].src = "images/err.png";
+		imgArray[1].src = "images/calc.png";
 
 		imgArray[2] = new Image();
 		imgArray[2].src = "images/cards.png";
 
 		imgArray[3] = new Image();
-		imgArray[3].src = "images/calc.png";
+		imgArray[3].src = "images/char.png";
 
 		imgArray[4] = new Image();
 		imgArray[4].src = "images/disk.png";
 
 		imgArray[5] = new Image();
-		imgArray[5].src = "images/cactus.png";
+		imgArray[5].src = "images/err.png";
 
 		imgArray[6] = new Image();
-		imgArray[6].src = "images/kiss.png";
+		imgArray[6].src = "images/fax.png";
 
-		var randIndex = Math.floor(imgArray.length * Math.random());
-		var myCursor = imgArray[randIndex];
-		
+		imgArray[7] = new Image();
+		imgArray[7].src = "images/folder.png";
+
+		imgArray[8] = new Image();
+		imgArray[8].src = "images/girl.png";
+
+		imgArray[9] = new Image();
+		imgArray[9].src = "images/horse.png";
+
+		imgArray[10] = new Image();
+		imgArray[10].src = "images/kiss.png";
+
+		imgArray[11] = new Image();
+		imgArray[11].src = "images/mac.png";
+
+		imgArray[12] = new Image();
+		imgArray[12].src = "images/palm.png";
+
+		imgArray[13] = new Image();
+		imgArray[13].src = "images/penguin.png";
+
+		imgArray[14] = new Image();
+		imgArray[14].src = "images/satelite.png";
+
+		imgArray[15] = new Image();
+		imgArray[15].src = "images/shark.png";
+
+		imgArray[16] = new Image();
+		imgArray[16].src = "images/tv.png";
+
+		imgArray[17] = new Image();
+		imgArray[17].src = "images/window.png";
+
+		function newIndex(arrLength) {
+			var randIndex = Math.floor(arrLength * Math.random());
+			return randIndex;
+		};
+		var myIndex = newIndex(imgArray.length);
+		var myCursor = imgArray[myIndex];
 
 		function initcanvas() {
 			canvas = document.getElementById('mycanvas');
@@ -59,7 +95,7 @@
 			
 			context.canvas.width = window.innerWidth;
 			context.canvas.height = window.innerHeight;
-			context.fillStyle = "#FFFFFF";
+			context.fillStyle = "rgba(0, 0, 200, 0)";
 			context.fillRect(0,0,canvas.width,canvas.height);
 
 			canvas.addEventListener('mousemove', function (e){
@@ -73,6 +109,12 @@
 				sendmouse(x,y);
 				draw(x,y);
 			}, false);
+
+			canvas.addEventListener('click', function(){
+				myIndex = newIndex(imgArray.length);
+				myCursor = imgArray[myIndex];
+
+			});
 		};
 
 		function draw(xval, yval) {
@@ -91,8 +133,11 @@
 </head>
 <body onload="initcanvas();">
 	<header>
-		cursor party!
+		<h1>Cursor Party!</h1>
 	</header>
-	<canvas id="mycanvas" />
+	<div class="main">
+		<canvas id="mycanvas" />
+	</div>
+	<footer></footer>
 </body>
 </html>

@@ -52,28 +52,35 @@ table {
 
 /*
 colors:
-light grey: #e9eaf3;
-dark blue: #393952;
-less dark blue: #4a4a63;
-lighter dark blue: #5a6384;
-teal: #2dc0bd;
+main grey: #BDC3C7;
+main blue: #042AC9;
+light grey: #DADFE1;
+darker grey: #6C7A89;
+almost black: #22313F;
 */
 
 body {
 	font-family: 'Cutive Mono';
-	font-size: 1.5rem;
-	background-color: #eeeeee;
+	font-size: 1rem;
+	background-color: #042AC9;
 }
 h1 {
-	font-size: 2.5rem;
+	font-size: 1.25rem;
+	padding: 0.2rem 1rem;
 }
 header {
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 10;
-	color: #4762B2;
-	padding: 0 0 0 1rem;
+	height: 2rem;
+	width: 100%;
+	color: #22313F;
+	background-color: #BDC3C7;
+	margin: 0 auto;
+	padding: 0;
+	border-bottom: 1px solid #6C7A89;
+	outline: 1px solid #22313F;
 }
 canvas {
 	cursor: none;
@@ -84,13 +91,15 @@ canvas {
 	margin: 0 auto;
 	color: #ffffff;
 }
-.foot{
+footer{
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	height:4px;
+	background-color: #BDC3C7;
+	border-top: 1px solid #ffffff;
+	outline: 1px solid #DADFE1;
 	width: 100%;
-	padding: 1rem 4%;
-	background-color: #393952;
 }
 input {
 	font-family: 'Cutive Mono';
