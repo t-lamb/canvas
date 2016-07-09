@@ -14,7 +14,7 @@
 
 		//receive from any event
 		socket.on('otherMouseMoved', function(data){
-			console.log(data.x + ", " + data.y + ", " + data.i);
+			//console.log(data.x + ", " + data.y + ", " + data.i);
 			odraw(data.x, data.y, data.i);
 		});
 
@@ -183,11 +183,13 @@
 			canvas = document.getElementById('mycanvas');
 			context = canvas.getContext('2d');
 			
+			//load canvas to fit window size
 			context.canvas.width = window.innerWidth;
 			context.canvas.height = window.innerHeight;
 			context.fillStyle = "rgba(0, 0, 200, 0)";
 			context.fillRect(0,0,canvas.width,canvas.height);
 
+			//draw at cursor location whenever mouse moves
 			canvas.addEventListener('mousemove', function (e){
 				//console.log("mousemove " + e.clientX + ", " + e.clientY);
 
@@ -200,11 +202,13 @@
 				draw(x,y);
 			}, false);
 
+			//when mouse clicked, get new icon
 			canvas.addEventListener('click', function(){
 				myIndex = newIndex(imgArray.length);
 				myCursor = imgArray[myIndex];
 			});
 
+			//show/hide dropdown when clicked
 			var show = document.getElementById("infoButton");
 			var dropdown = document.getElementById("dropdown");
 			var showing = false;
@@ -218,6 +222,7 @@
 				}
 			});
 
+			//switch to cute icons
 			var cute = document.getElementById("cute");
 			cute.addEventListener('click', function(){
 				imgArray = cuteArr;
@@ -225,6 +230,7 @@
 				myCursor = imgArray[myIndex];
 			});
 
+			//switch to misc icons
 			var misc = document.getElementById("misc");
 			misc.addEventListener('click', function(){
 				imgArray = miscArr;
@@ -232,18 +238,24 @@
 				myCursor = imgArray[myIndex];
 			});
 
+			//var recycle = document.getElementById("recycle");
+			//recycle.addEventListener('click', newCanvas());
 		};
 
+		// function newCanvas() {
+		// 	console.log("hi");
+		// };
+
+		//draws icons on canvas
 		function draw(xval, yval) {
 			//console.log("draw " + xval + " " + yval);
         	context.drawImage(myCursor, xval, yval);
-
 		};
 
+		//draws other person's icons on canvas
 		function odraw(xval, yval, i){
 			var oCursor = imgArray[i];
-			context.drawImage(oCursor, xval, yval);
-		
+			context.drawImage(oCursor, xval, yval);		
 		};
 
 	</script>
@@ -268,6 +280,10 @@
 			<li class="desktopicon" id="misc">
 				<img src="images/folder.png"/>
 				<p>MISC.</p>
+			</li>
+			<li class="desktopicon" id="recycle">
+				<img src="images/recycle.gif"/>
+				<p><a href="index.html">Recycle Bin</a></p>
 			</li>
 		</ul>
 		<canvas id="mycanvas" />

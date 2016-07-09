@@ -145,10 +145,11 @@ button:hover {
 }
 .desktopicon {
 	padding: 0 1rem 1rem 0;
-
+	cursor: pointer;
 }
-.desktopicon p{
+.desktopicon p,a{
 	color: #ffffff;
 	font-size: .75rem;
 	padding: .5rem 0;
+	text-decoration: none;
 }
